@@ -10,7 +10,7 @@ module.exports = function (grunt, params) {
         fileNameVersion   : '<%= pkg.name %>-<%= pkg.version %>.js',
         filePath          : '<%= outPath %>/<%= pkg.name %>.js',
         filePathVersion   : '<%= outPath %>/<%= pkg.name %>-<%= pkg.version %>.js',
-        filePathVersionMin: '<%= outPath %>/<%= pkg.name %>-<%= pkg.version %>.min.js',
+        filePathVersionMin: '<%= outPath %>/<%= pkg.name %>-<%= pkg.version %>-min.js',
 
         concat: {
             options: {
