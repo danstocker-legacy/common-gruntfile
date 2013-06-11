@@ -1,6 +1,6 @@
 {
     "name": "common-gruntfile",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Common grunt process for libraries",
     "main": "common-gruntfile.js"
 }

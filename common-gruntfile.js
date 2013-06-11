@@ -49,6 +49,15 @@ module.exports = function (grunt, params) {
 
         jstestdriver: {
             files: '<%= params.test %>'
+        },
+
+        jsdoc: {
+            dist: {
+                src    : ['js/*.js'],
+                options: {
+                    destination: 'doc'
+                }
+            }
         }
     };
 
@@ -80,6 +89,9 @@ module.exports = function (grunt, params) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-jstestdriver');
     grunt.registerTask('test', ['jshint', 'jstestdriver']);
+
+    grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.registerTask('doc', ['jsdoc']);
 
     // build-related tasks
     grunt.loadNpmTasks('grunt-contrib-concat');
