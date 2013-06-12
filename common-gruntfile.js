@@ -61,28 +61,6 @@ module.exports = function (grunt, params) {
         }
     };
 
-    /**
-     * Preparing targets
-     * Targets are a list of folders relative to the current folder
-     * to where the built file should be copied (versioned, uncompressed)
-     * Invoke a push by "> grunt copy:push"
-     */
-    var targets;
-    if (grunt.file.exists('targets.json')) {
-        targets = grunt.file.readJSON('targets.json')
-            .map(function (item) {
-                return     {
-                    expand: true,
-                    cwd   : '<%= outPath %>',
-                    src   : '<%= fileNameVersion %>',
-                    dest  : item
-                };
-            });
-
-        // adding push copy to config
-        config.copy.push = {files: targets};
-    }
-
     grunt.initConfig(config);
 
     // test-related tasks
