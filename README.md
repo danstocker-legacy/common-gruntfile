@@ -6,11 +6,21 @@ Common grunt process for libraries.
 Performs
 --------
 
-- concatenation
-- minification
+###`grunt test` or `grunt`
+
 - linting with jsHint
 - unit tests with jsTestDriver
-- updating self as dependency in local projects
+
+###`grunt build`
+
+testing, plus
+
+- concatenation
+- minification
+
+###`grunt doc`
+
+- generating jsDoc
 
 Example
 -------
