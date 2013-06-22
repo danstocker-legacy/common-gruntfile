@@ -8,13 +8,17 @@ module.exports = function (grunt, params) {
 
         outPath           : 'out',
         fileNameVersion   : '<%= pkg.name %>-<%= pkg.version %>.js',
-        filePath          : '<%= outPath %>/<%= pkg.name %>.js',
+        filePath          : '<%= pkg.name %>.js',
         filePathVersion   : '<%= outPath %>/<%= pkg.name %>-<%= pkg.version %>.js',
         filePathVersionMin: '<%= outPath %>/<%= pkg.name %>-<%= pkg.version %>-min.js',
 
         concat: {
             options: {
-                separator: ''
+                separator   : '',
+                stripBanners: true,
+                banner      : '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+                              '<%= grunt.template.today("yyyy-mm-dd") %> - ' +
+                              '<%= pkg.author %> - <%= pkg.copyright %>*/\n'
             },
 
             dist: {
@@ -75,7 +79,7 @@ module.exports = function (grunt, params) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-yui-compressor');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.registerTask('build', ['test', 'concat', 'min', 'copy:main']);
+    grunt.registerTask('build', ['test', 'concat', 'copy:main', 'min']);
 
     grunt.registerTask('default', ['test']);
 };
