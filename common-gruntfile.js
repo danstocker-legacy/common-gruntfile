@@ -14,11 +14,10 @@ module.exports = function (grunt, params) {
 
         concat: {
             options: {
-                separator   : '',
-                stripBanners: true,
-                banner      : '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                              '<%= grunt.template.today("yyyy-mm-dd") %> - ' +
-                              '<%= pkg.author %> - <%= pkg.copyright %>*/\n'
+                separator: '',
+                banner   : '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+                           '<%= grunt.template.today("yyyy-mm-dd") %> - ' +
+                           '<%= pkg.author %> - <%= pkg.copyright %>*/\n'
             },
 
             dist: {
