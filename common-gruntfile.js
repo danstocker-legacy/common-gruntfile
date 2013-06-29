@@ -56,7 +56,7 @@ module.exports = function (grunt, params) {
 
         jsdoc: {
             dist: {
-                src    : ['js/*.js'],
+                src    : '<%= params.files %>',
                 options: {
                     destination: 'doc'
                 }
