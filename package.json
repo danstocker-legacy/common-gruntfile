@@ -1,6 +1,6 @@
 {
     "name"       : "common-gruntfile",
-    "version"    : "0.1.2",
+    "version"    : "0.1.4",
     "author"     : "Dan Stocker <dan@kwaia.com>",
     "description": "Common grunt process for libraries",
     "main"       : "common-gruntfile.js",
