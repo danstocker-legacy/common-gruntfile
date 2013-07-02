@@ -77,7 +77,7 @@ module.exports = function (grunt, params) {
          */
         jsdoc: {
             dist: {
-                src    : '<%= params.files %>',
+                src    : ['<%= params.files %>', 'README.md'],
                 options: {
                     destination: 'doc'
                 }
