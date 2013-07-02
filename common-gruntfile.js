@@ -12,6 +12,10 @@ module.exports = function (grunt, params) {
         filePathVersion   : '<%= outPath %>/<%= pkg.name %>-<%= pkg.version %>.js',
         filePathVersionMin: '<%= outPath %>/<%= pkg.name %>-<%= pkg.version %>-min.js',
 
+        /**
+         * Concatenates project files into a final output file, according to
+         * file list specified in params.
+         */
         concat: {
             options: {
                 separator: '',
@@ -26,6 +30,9 @@ module.exports = function (grunt, params) {
             }
         },
 
+        /**
+         * Minifies output file.
+         */
         min: {
             dist: {
                 src : ['<%= filePath %>'],
@@ -33,6 +40,9 @@ module.exports = function (grunt, params) {
             }
         },
 
+        /**
+         * Copies output file to output folder by name w/ version number included.
+         */
         copy: {
             main: {
                 files: [
@@ -41,6 +51,9 @@ module.exports = function (grunt, params) {
             }
         },
 
+        /**
+         * Runs jsHint code quality assessment.
+         */
         jshint: {
             options: {
                 globals: '<%= params.globals %>',
@@ -50,16 +63,40 @@ module.exports = function (grunt, params) {
             all: ['Gruntfile.js', 'js/**/*.js']
         },
 
+        /**
+         * Runs unit tests.
+         * JSTestDriver service must be started.
+         * See https://github.com/rickyclegg/grunt-jstestdriver#starting-the-server
+         */
         jstestdriver: {
             files: '<%= params.test %>'
         },
 
+        /**
+         * Generates documentation
+         */
         jsdoc: {
             dist: {
                 src    : '<%= params.files %>',
                 options: {
                     destination: 'doc'
                 }
+            }
+        },
+
+        /**
+         * Strips out assumed class instantiation (new Xxxx) from generated documentation.
+         */
+        "regex-replace": {
+            strip: {
+                src    : ['doc/<%= pkg.name%>.*.html'],
+                actions: [
+                    {
+                        name   : 'stripNew',
+                        search : '(<div class="container-overview">)\\s*<dt>[\\w<>="-/\\s]*?</dt>',
+                        replace: '$1'
+                    }
+                ]
             }
         }
     };
@@ -72,7 +109,8 @@ module.exports = function (grunt, params) {
     grunt.registerTask('test', ['jshint', 'jstestdriver']);
 
     grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.registerTask('doc', ['jsdoc']);
+    grunt.loadNpmTasks('grunt-regex-replace');
+    grunt.registerTask('doc', ['jsdoc', 'regex-replace:strip']);
 
     // build-related tasks
     grunt.loadNpmTasks('grunt-contrib-concat');
