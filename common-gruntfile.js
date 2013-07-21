@@ -1,4 +1,4 @@
-module.exports = function (grunt, params) {
+module.exports = function (grunt, params, extraConfig) {
     "use strict";
 
     var config = {
@@ -100,6 +100,14 @@ module.exports = function (grunt, params) {
             }
         }
     };
+
+    // merging config
+    var key;
+    for (key in extraConfig) {
+        if (extraConfig.hasOwnProperty(key)) {
+            config[key] = extraConfig[key];
+        }
+    }
 
     grunt.initConfig(config);
 
