@@ -89,7 +89,7 @@ module.exports = function (grunt, params, extraConfig) {
          */
         "regex-replace": {
             strip: {
-                src    : ['doc/<%= pkg.name%>.*.html'],
+                src    : ['doc/*.html'],
                 actions: [
                     {
                         name   : 'stripNew',
